@@ -17,27 +17,29 @@ export class Validate {
             const respMessage = await this.getResponseMessage(nums);
             return {numbers: nums, message: respMessage};
         } catch (e) {
-            console.error('ERROR_: ', e);
+            console.error(e);
             return { error: e };
         }
     }
 
     private async getPhoneNumberInfo(phoneNumberList: [string]) {
-
-        const phoneNumberInfo = phoneNumberList.map(num => {
-            const phoneNumber = parsePhoneNumber(num);
-            const info = {
-                number: phoneNumber.number,
-                country: phoneNumber.country,
-                type: phoneNumber.getType(),
-                possibleNumber: isPossibleNumber(num, phoneNumber.country),
-                isValid: isValidPhoneNumber(num, phoneNumber.country)
-            }
-
-            return info;
-        });
-
-        return phoneNumberInfo
+        try {
+            const phoneNumberInfo = phoneNumberList.map(num => {
+                const phoneNumber = parsePhoneNumber(num);
+                const info = {
+                    number: phoneNumber.number,
+                    country: phoneNumber.country,
+                    type: phoneNumber.getType(),
+                    possibleNumber: isPossibleNumber(num, phoneNumber.country),
+                    isValid: isValidPhoneNumber(num, phoneNumber.country)
+                }
+    
+                return info;
+            });
+            return phoneNumberInfo
+        } catch (error) {
+            throw new BadRequestException('Something bad happened', { cause: new Error(), description: 'There is a problem with the phone number' })
+        }
     }
 
     private async getResponseMessage(numbers: any) {
