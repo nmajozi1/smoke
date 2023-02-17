@@ -14,7 +14,7 @@ export class PhoneNumberValidatorService {
         } catch (e) {
             throw new HttpException({
                 status: HttpStatus.FORBIDDEN,
-                error: 'Failed insert phone numbers',
+                error: 'Failed insert phone numbers.',
             }, HttpStatus.FORBIDDEN, {
                 cause: e
              });
