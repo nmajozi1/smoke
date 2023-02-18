@@ -11,9 +11,9 @@ export class Validate {
     async validate(phoneNumbers: PhoneNumbers) {
         try {
             const { phoneNumberList } = phoneNumbers;
-            if(phoneNumberList.length < 1) throw new BadRequestException('Something bad happened', { cause: new Error(), description: 'Phone Numbers have not been provided.'});
+            if(phoneNumberList.length < 1) throw new BadRequestException('Phone numbers are missing', { cause: new Error(), description: 'Phone Numbers have not been provided.'});
             const phoneNumberInfo = await this.getPhoneNumberInfo(phoneNumberList);
-            if(phoneNumberInfo.length < 1) throw new BadRequestException('Something bad happened', { cause: new Error(), description: 'Could not find information on the selected country.'});
+            if(phoneNumberInfo.length < 1) throw new BadRequestException('Country information is missing', { cause: new Error(), description: 'Could not find information on the selected country.'});
             const nums = await this.validationService.validateNumbers(phoneNumberInfo);
             const respMessage = await this.getResponseMessage(nums);
             return {numbers: nums, message: respMessage};
@@ -39,7 +39,7 @@ export class Validate {
             });
             return phoneNumberInfo
         } catch (error) {
-            throw new BadRequestException('Something bad happened', { cause: new Error(), description: 'Phone Numbers for the selected country could not be validated.' })
+            throw new BadRequestException('Phone numbers are missing', { cause: new Error(), description: 'Phone Numbers for the selected country could not be validated.' })
         }
     }
 
