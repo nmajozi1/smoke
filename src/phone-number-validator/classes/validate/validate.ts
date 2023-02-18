@@ -38,7 +38,7 @@ export class Validate {
             });
             return phoneNumberInfo
         } catch (error) {
-            throw new BadRequestException('Something bad happened', { cause: new Error(), description: 'There is a problem with the phone number' })
+            throw new BadRequestException('Something bad happened', { cause: new Error(), description: 'Phone Numbers for the selected country could not be validated.' })
         }
     }
 
