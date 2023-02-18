@@ -47,7 +47,7 @@ export class Validate {
         const valid = numbers.filter(num => num.isValid === true);
         const percentage = (valid.length / numbers.length) * 100;
         const message = `Based on the ${numbers.length} you submitted. You have ${valid.length}
-        valid which calculates to ${percentage.toFixed(2)}% valid results for the country.`
+        valid which calculates to ${percentage}% valid results for the country.`
 
         return message;
     }
