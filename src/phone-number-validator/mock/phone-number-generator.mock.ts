@@ -28,6 +28,18 @@ export const serviceResult = [
     }
 ];
 
+export const modelResult = [
+    {
+        __v: 0,
+        _id: "63f2034c32f5bd5bc147c13d",
+        country: "ZA",
+        isValid: true,
+        number: "+27614618298",
+        possibleNumber: true,
+        type: "MOBILE",
+    }
+]
+
 export const validateResponse = [
     {
       country: 'ZA',
