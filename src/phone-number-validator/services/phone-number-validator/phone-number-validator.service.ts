@@ -17,7 +17,7 @@ export class PhoneNumberValidatorService {
                 error: 'Failed insert phone numbers.',
             }, HttpStatus.FORBIDDEN, {
                 cause: e
-             });
+            });
         }
     }
 }
